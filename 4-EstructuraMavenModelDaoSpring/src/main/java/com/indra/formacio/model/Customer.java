@@ -1,8 +1,5 @@
 package com.indra.formacio.model;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * Objects of this class represents a Customer A Customer has one Employee
@@ -22,7 +23,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Customer {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@SequenceGenerator(name="SEQ_CUSTOMER",sequenceName="SEQ_CUSTOMER")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_CUSTOMER")	
 	protected Long id;
 	@Column
 	protected String name;

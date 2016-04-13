@@ -9,16 +9,13 @@ http://www.springframework.org/schema/data/jpa http://www.springframework.org/sc
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
 
-    <!-- Creates the datasource bean. -->     
-	 <bean id="dataSource"
-            class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-            <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-            <property name="url"
-                value="jdbc:oracle:thin:@localhost:1521:SID" />
-            <property name="username" value="scott" />
-            <property name="password" value="tiger" />
-        </bean>
-        
+    <!-- Creates the datasource bean. -->
+     <jdbc:embedded-database id="dataSource"
+            type="DERBY">
+            <jdbc:script location="classpath:/database/create-schema.sql" />
+            <jdbc:script location="classpath:/database/insert-data.sql" />            
+     </jdbc:embedded-database>
+	
     <!--
         Creates the transaction manager bean that integrates the used JPA provider with the
         Spring transaction mechanism.
@@ -46,7 +43,7 @@ http://www.springframework.org/schema/jdbc http://www.springframework.org/schema
                     Configures the used database dialect. This allows Hibernate to create SQL
                     that is optimized for the used database.
                 -->
-                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
 
                 <!--
                     Specifies the action that is invoked to the database when the Hibernate

@@ -16,7 +16,7 @@ import com.indra.formacio.dao.EmployeeRepository;
 import com.indra.formacio.model.Employee;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/applicationContext.xml" })
+@ContextConfiguration(locations = { "/applicationContextTest.xml" })
 public class EmployeeRepoTest extends TestCase {
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	

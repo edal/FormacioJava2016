@@ -8,6 +8,20 @@
 	<name>Model</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- 
+		This dependency won't be resolved 'till installed in the local repo 
+		mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar -Dfile=ojdbc7.jar -DgeneratePom=true 
+		For convenience the ojdbc7 jar file is available in
+		src/main/resources/driver/ojdbc7.jar 
+		
+		-->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc7</artifactId>
+			<version>12.1.0.2</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

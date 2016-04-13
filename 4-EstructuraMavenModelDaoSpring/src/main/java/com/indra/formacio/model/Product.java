@@ -1,12 +1,14 @@
 package com.indra.formacio.model;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * Objects of this class represents a Product of the companys portfolio.
@@ -17,7 +19,8 @@ import javax.persistence.Id;
 @Entity
 public class Product {
 	@Id
-    @GeneratedValue
+	@SequenceGenerator(name="SEQ_PRODUCT",sequenceName="SEQ_PRODUCT")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE , generator="SEQ_PRODUCT")	
 	protected Long id;
 	@Column
 	protected String name;
